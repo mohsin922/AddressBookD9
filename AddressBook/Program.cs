@@ -5,59 +5,87 @@ namespace AddressBook
 {
     class AddressBook
     {
-        static void Main(string[] args)
+        public static List<Person> People = new List<Person>();
+        public class Person
         {
-            Console.WriteLine("Welcome to the Address Book!");
-            PersonalDetails.InputDetails();
+            public string FirstName { get; set; }
+            public string LastName { get; set; }
+            public string Addressess { get; set; }
+            public string City { get; set; }
+            public string State { get; set; }
+            public string PhoneNumber { get; set; }
+            public string ZipCode { get; set; }
+            public string Email { get; set; }
+
         }
-    }
-    class PersonalDetails
-    {
-        public static void InputDetails()
+        private static void GetPerson()
         {
-            Console.Write("Enter your first name: ");
-            string firstname = Console.ReadLine();
+            Person person = new Person();
+
+            Console.Write("Enter First Name: ");
+            person.FirstName = Console.ReadLine();
 
             Console.Write("Enter Last Name: ");
-            string lastName = Console.ReadLine();
+            person.LastName = Console.ReadLine();
 
             Console.Write("Enter Address : ");
-            var Address = Console.ReadLine();
+            person.Addressess = Console.ReadLine();
 
             Console.Write("Enter City : ");
-            string city = Console.ReadLine();
+            person.City = Console.ReadLine();
 
             Console.Write("Enter State : ");
-            string state = Console.ReadLine();
+            person.State = Console.ReadLine();
+
+            Console.Write("Enter PhoneNumber : ");
+            person.PhoneNumber = Console.ReadLine();
 
             Console.Write("Enter ZipCode: ");
-            string zipCode = Console.ReadLine();
+            person.ZipCode = Console.ReadLine();
 
-            Console.Write("Enter Phone Number: ");
-            string phoneNumber = Console.ReadLine();
+            Console.Write("Enter Email: ");
+            person.Email = Console.ReadLine();
 
-            Console.Write("Enter EmailId: ");
-            string Email = Console.ReadLine();
-
-            Console.WriteLine("\n");
-            Console.WriteLine("\n");
-            List<string> PersonAdressBook = new List<string>();
-
-            PersonAdressBook.Add(firstname);
-            PersonAdressBook.Add(lastName);
-            PersonAdressBook.Add(Address);
-            PersonAdressBook.Add(city);
-            PersonAdressBook.Add(state);
-            PersonAdressBook.Add(zipCode);
-            PersonAdressBook.Add(phoneNumber);
-            PersonAdressBook.Add(Email);
-
-            foreach (string s in PersonAdressBook)
+            People.Add(person);
+        }
+        public static void PrintCustomer(Person person)
+        {
+            Console.WriteLine("First Name: " + person.FirstName);
+            Console.WriteLine("Last Name: " + person.LastName);
+            Console.WriteLine("Phone Number: " + person.PhoneNumber);
+            Console.WriteLine("Address : " + person.Addressess);
+            Console.WriteLine("City : " + person.City);
+            Console.WriteLine("State : " + person.State);
+            Console.WriteLine("ZipCode : " + person.ZipCode);
+            Console.WriteLine("Phone Number: " + person.PhoneNumber);
+            Console.WriteLine("EmailId: " + person.Email);
+            Console.WriteLine("-------------------------------------------");
+        }
+        public static void PeopleDetails()
+        {
+            if (People.Count == 0)
             {
-                Console.WriteLine(s);
+                Console.WriteLine("Your address book is empty.");
+                Console.ReadKey();
+                return;
             }
+            Console.WriteLine("Details of newly created Person in your address book:\n");
+            foreach (var person in People)
+            {
+                PrintCustomer(person);
+            }
+            Console.WriteLine("\nPress any key to continue.");
+            Console.ReadKey();
+        }
 
+
+        static void Main(string[] args)
+        {
+
+            GetPerson();
+            PeopleDetails();
 
         }
     }
+
 }
