@@ -11,3 +11,4 @@ C:\Users\MOHSIN ZAHOOR PEER\Desktop\AddressBook\AddressBook\obj\Debug\netcoreapp
 C:\Users\MOHSIN ZAHOOR PEER\Desktop\AddressBook\AddressBook\obj\Debug\netcoreapp3.1\AddressBook.dll
 C:\Users\MOHSIN ZAHOOR PEER\Desktop\AddressBook\AddressBook\obj\Debug\netcoreapp3.1\AddressBook.pdb
 C:\Users\MOHSIN ZAHOOR PEER\Desktop\AddressBook\AddressBook\obj\Debug\netcoreapp3.1\AddressBook.genruntimeconfig.cache
+C:\Users\MOHSIN ZAHOOR PEER\Desktop\AddressBook\AddressBook\obj\Debug\netcoreapp3.1\AddressBook.csproj.AssemblyReference.cache
