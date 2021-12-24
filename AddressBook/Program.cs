@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace AddressBook
 {
@@ -131,6 +132,24 @@ namespace AddressBook
 
             }
         }
+
+        public static void RemoveContact()
+        {
+            Console.WriteLine("Enter the first name of the person you would like to remove.");
+            string Remove = Console.ReadLine();
+            foreach (var person in People.ToList())
+            {
+                if (person.FirstName.ToUpper() == Remove.ToUpper())
+                {
+                    People.Remove(person);
+                    Console.WriteLine("Contact is deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Contact is not present");
+                }
+            }
+        }
         public static void ListingPeople()
         {
             if (People.Count == 0)
@@ -146,6 +165,7 @@ namespace AddressBook
             }
             Console.WriteLine("\nPress any key to continue.");
             Console.ReadKey();
+            Console.WriteLine("-------------------------------------------");
         }
 
 
@@ -156,6 +176,10 @@ namespace AddressBook
             ListingPeople();
             EditContact();
             ListingPeople();
+            RemoveContact();
+            ListingPeople();
+
+
 
         }
     }
