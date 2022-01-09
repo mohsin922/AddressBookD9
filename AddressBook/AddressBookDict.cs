@@ -11,7 +11,8 @@ namespace AddressBook
 
         public static void addAddressBook()
         {
-            int count = 2;
+            Console.WriteLine("How many addressbooks do you want to create?");
+            int count = Convert.ToInt32(Console.ReadLine());
             while (count > 0)
             {
                 Console.WriteLine("Do you want to add the contact in the existing addressbook or new addressbook\n Enter the number accordingly\n 1. New addressbook\n 2. Existing addressbook");
@@ -64,9 +65,19 @@ namespace AddressBook
             while (personNum > 0)
             {
                 Contacts person = new Contacts();
-
+            firstName:
                 Console.WriteLine("Enter your First name");
-                person.firstName = Console.ReadLine();
+                string firstName = Console.ReadLine();
+                if (NameDuplicationCheck(addressBookName, firstName))
+                {
+                    person.firstName = firstName;
+                }
+                else
+                {
+                    Console.WriteLine("The name {0} already  exist in the current address book. please enter a new name", firstName);
+                    goto firstName;
+                }
+
                 Console.WriteLine("Enter your Last name");
                 person.lastName = Console.ReadLine();
                 Console.WriteLine("Enter your address");
@@ -89,10 +100,40 @@ namespace AddressBook
             }
         }
 
-
+        public static bool NameDuplicationCheck(string addressBookName, string firstName)
+        {
+            int flag = 0;
+            if (mySystem[addressBookName].Count > 0)
+            {
+                foreach (Contacts contact in mySystem[addressBookName])
+                {
+                    if (!(contact.firstName == firstName))
+                    {
+                        flag = 1;
+                    }
+                    else
+                    {
+                        flag = 0;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                return true;
+            }
+            if (flag == 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static void ContactsDisplay()
         {
-            Console.WriteLine("Enter the name of the addressbook that you wants to use for displaying contacts");
+            Console.WriteLine("Enter the name of the addressbook that you want for displaying contacts");
             string addressBookName = Console.ReadLine();
             if (mySystem[addressBookName].Count > 0)
             {
@@ -128,9 +169,9 @@ namespace AddressBook
 
         public static void EditContact()
         {
-            Console.WriteLine("Enter the name of the addressbook that you wants to use for editing contacts");
+            Console.WriteLine("Enter the name of the addressbook that you want to use for editing contacts");
             string addressBookName = Console.ReadLine();
-            Console.WriteLine("Enter the first name of the person whoom you want to edit the details");
+            Console.WriteLine("Enter the first name of the person whom you want to edit the details");
             string editKey = Console.ReadLine();
             int flag = 0;
             if (mySystem[addressBookName].Count > 0)
@@ -207,7 +248,7 @@ namespace AddressBook
         }
         public static void DeleteContact()
         {
-            Console.WriteLine("Enter the name of the addressbook that you wants to use for Deleting contacts");
+            Console.WriteLine("Enter the name of the addressbook that you want to use for Deleting contacts");
             string addressBookName = Console.ReadLine();
             Console.WriteLine("Enter the first name of the person whose contact you want to delete from the addressbook");
             string deleteKey = Console.ReadLine();
