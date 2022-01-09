@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "6JfFxuSv3wDrVZWDXEySZ4CF1QgblfZKoDdNCQHr04d+TzV9bnyoY0LKd//Az91Ox0Wdwzw7DNfjbX4ohJ3E4Q==",
+  "dgSpecHash": "nEcKfy1lnEWz++Wk/qfOcm9Ds/DyueEO1aPDLTHZxrT5c7XAMek0Nav1Xxilb3eS7PsAqWMXNliPNJIiErIK2Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\MOHSIN ZAHOOR PEER\\Desktop\\AddressBook\\AddressBook\\AddressBook.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\MOHSIN ZAHOOR PEER\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.22\\microsoft.netcore.app.host.win-x64.3.1.22.nupkg.sha512"
+  ],
   "logs": []
 }
