@@ -283,7 +283,7 @@ namespace AddressBook
                 Console.WriteLine("contact of the person {0} does not exist", deleteKey);
             }
         }
-
+        //Uc8
         public static void PersonSearch()
         {
             Dictionary<string, List<Contacts>> cityPersons = new Dictionary<string, List<Contacts>>();
@@ -311,7 +311,7 @@ namespace AddressBook
             }
             PersonSearchDisplay(cityPersons, statePerson, cityKey, stateKey);
         }
-
+        //UC9
         public static void PersonSearchDisplay(Dictionary<string, List<Contacts>> cityPersons, Dictionary<string, List<Contacts>> statePersons, string cityKey, string stateKey)
         {
             Console.WriteLine("Persons in {0} city: ", cityKey);
