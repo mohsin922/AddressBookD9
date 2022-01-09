@@ -11,11 +11,12 @@ namespace AddressBook
 
         public static void addAddressBook()
         {
-            Console.WriteLine("How many addressbooks do you want to create?");
+            Console.WriteLine("How many AddressBooks do you want to create?");
             int count = Convert.ToInt32(Console.ReadLine());
             while (count > 0)
             {
-                Console.WriteLine("Do you want to add the contact in the existing addressbook or new addressbook\n Enter the number accordingly\n 1. New addressbook\n 2. Existing addressbook");
+                Console.WriteLine("Do you want to add the contact in the existing AddressBook or new AddressBook" +
+                    "\n Enter the number accordingly\n 1. New AddressBook\n 2. Existing AddressBook");
                 int key = Convert.ToInt32(Console.ReadLine());
                 if (key == 1)
                 {
@@ -31,11 +32,11 @@ namespace AddressBook
 
         public static void AddressBookNewNameValidator()
         {
-            Console.WriteLine("Enter the new addressbook name\n");
+            Console.WriteLine("Enter the new AddressBook name\n");
             string addressBookName = Console.ReadLine();
             if (mySystem.ContainsKey(addressBookName))
             {
-                Console.WriteLine("Please enter a new addressbook name. The name entered already exist");
+                Console.WriteLine("Please enter a new AddressBook name. The name entered already exist");
                 AddressBookNewNameValidator();
             }
             else
@@ -46,11 +47,11 @@ namespace AddressBook
         }
         public static void AddressBookExistingNameValidator()
         {
-            Console.WriteLine("Enter the Existing addressbook name\n");
+            Console.WriteLine("Enter the Existing AddressBook name\n");
             string addressBookName = Console.ReadLine();
             if (!mySystem.ContainsKey(addressBookName))
             {
-                Console.WriteLine("Please enter a new addressbook name. The name entered already exist");
+                Console.WriteLine("Please enter a new AddressBook name. The name entered already exist");
                 AddressBookExistingNameValidator();
             }
             else
@@ -74,7 +75,8 @@ namespace AddressBook
                 }
                 else
                 {
-                    Console.WriteLine("The name {0} already  exist in the current address book. please enter a new name", firstName);
+                    Console.WriteLine("The name {0} already  exist in the current address book. " +
+                        "please enter a new name", firstName);
                     goto firstName;
                 }
 
@@ -133,7 +135,7 @@ namespace AddressBook
         }
         public static void ContactsDisplay()
         {
-            Console.WriteLine("Enter the name of the addressbook that you want for displaying contacts");
+            Console.WriteLine("Enter the name of the AddressBook that you wants to use for displaying contacts");
             string addressBookName = Console.ReadLine();
             if (mySystem[addressBookName].Count > 0)
             {
@@ -169,7 +171,7 @@ namespace AddressBook
 
         public static void EditContact()
         {
-            Console.WriteLine("Enter the name of the addressbook that you want to use for editing contacts");
+            Console.WriteLine("Enter the name of the AddressBook that you want to use for editing contacts");
             string addressBookName = Console.ReadLine();
             Console.WriteLine("Enter the first name of the person whom you want to edit the details");
             string editKey = Console.ReadLine();
@@ -182,7 +184,9 @@ namespace AddressBook
                     {
                         while (true)
                         {
-                            Console.WriteLine("Enter the key number for editing the details\n 1. First name\n 2. Last name\n 3. Address\n 4. City\n 5. State\n 6. Zipcode\n 7. Phone number\n 8. Email ID\n 9. Exit editor");
+                            Console.WriteLine("Enter the key number for editing the details\n 1. First name\n 2. Last name" +
+                                "\n 3. Address\n 4. City\n 5. State\n 6. Zipcode\n 7. Phone number\n 8. Email ID" +
+                                "\n 9. Exit editor");
                             int key = Convert.ToInt32(Console.ReadLine());
                             switch (key)
                             {
@@ -248,9 +252,9 @@ namespace AddressBook
         }
         public static void DeleteContact()
         {
-            Console.WriteLine("Enter the name of the addressbook that you want to use for Deleting contacts");
+            Console.WriteLine("Enter the name of the AddressBook that you want to use for Deleting contacts");
             string addressBookName = Console.ReadLine();
-            Console.WriteLine("Enter the first name of the person whose contact you want to delete from the addressbook");
+            Console.WriteLine("Enter the first name of the person whose contact you want to delete from the AddressBook");
             string deleteKey = Console.ReadLine();
             int flag = 0;
             if (mySystem[addressBookName].Count > 0)
@@ -277,6 +281,48 @@ namespace AddressBook
             {
 
                 Console.WriteLine("contact of the person {0} does not exist", deleteKey);
+            }
+        }
+
+        public static void PersonSearch()
+        {
+            Dictionary<string, List<Contacts>> cityPersons = new Dictionary<string, List<Contacts>>();
+            Dictionary<string, List<Contacts>> statePerson = new Dictionary<string, List<Contacts>>();
+
+            Console.WriteLine("Enter the city that you want to search");
+            string cityKey = Console.ReadLine();
+            cityPersons[cityKey] = new List<Contacts>();
+            Console.WriteLine("Enter the state that you want to search");
+            string stateKey = Console.ReadLine();
+            statePerson[stateKey] = new List<Contacts>();
+            foreach (string addressBookName in mySystem.Keys)
+            {
+                foreach (Contacts contact in mySystem[addressBookName])
+                {
+                    if (cityKey.ToLower() == contact.city)
+                    {
+                        cityPersons[cityKey].Add(contact);
+                    }
+                    else if (stateKey.ToLower() == contact.state)
+                    {
+                        statePerson[stateKey].Add(contact);
+                    }
+                }
+            }
+            PersonSearchDisplay(cityPersons, statePerson, cityKey, stateKey);
+        }
+
+        public static void PersonSearchDisplay(Dictionary<string, List<Contacts>> cityPersons, Dictionary<string, List<Contacts>> statePersons, string cityKey, string stateKey)
+        {
+            Console.WriteLine("Persons in {0} city: ", cityKey);
+            foreach (Contacts contact in cityPersons[cityKey])
+            {
+                Console.WriteLine("{0}", contact.firstName);
+            }
+            Console.WriteLine("Persons in {0} state : ", stateKey);
+            foreach (Contacts contact in statePersons[stateKey])
+            {
+                Console.WriteLine("{0}", contact.firstName);
             }
         }
     }
